@@ -1,0 +1,2 @@
+#Will save a Pro7 MAXX stream without LOGO 
+livestreamer -O --http-header "X-Forwarded-For=195.186.136.21" "hds://http://pebbles107-lh.akamaihd.net/z/pro7maxx_1@97522//manifest.f4m" best | ffmpeg -i - -vcodec copy -c:v mpeg4 -c:a copy  -vf "delogo=x=874:y=24:w=125:h=35:band=10" outfile.avi
