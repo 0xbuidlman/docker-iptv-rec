@@ -48,3 +48,16 @@ Manifest for best selection
         [cli][info] Opening stream: 1428k (hds)
         [....]
 
+
+Use [every](https://github.com/iarna/App-Every) for regular ripping
+----------------------------------------------------
+
+* You can easy write something like `every mon at 15:15 do mkdir ....` & it would creat a cronjob exactly as you written.
+
+
+      $ every mon at 23:10 do docker run -it dbiesecke/docker-iptv-rec pro7maxx_1 30 'ftp://username:password@server:21/public/output.avi'`
+      6 11 * * 1 cd "/root";  at 23:10 do docker run -it dbiesecke/docker-iptv-rec pro7maxx_1 30 'ftp://username:password@server:21/public/output.avi'`
+
+ 
+
+
