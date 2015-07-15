@@ -18,7 +18,7 @@ my $hour = strftime '%H',gmtime();
 $file=~s/\.([a-z]+)$/-$hour.$mins-$tvchan\.$1/i;
 my $filter = "";
 
-#$filter = '-vf "delogo=x=874:y=24:w=125:h=35:band=10"' if ($tvchan =~/pro7maxx/i);
+$filter = '-vf "delogo=x=874:y=24:w=125:h=35:band=10"' if ($tvchan =~/pro7maxx/i);
 
 print "TV:$tvchan\t$val\t$file\n";
 if (-f '/tmp/ip.pls') {
