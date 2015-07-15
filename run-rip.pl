@@ -43,7 +43,8 @@ alarm($timeout);
 while(!$time_to_die){
 my $cmd =  'livestreamer --yes-run-as-root  -O --http-header "X-Forwarded-For='.$forward.'" "hds://'.$url.'" best | ffmpeg -i - -vcodec copy -c:v libx264 -c:a copy  '.$filter.' '.$file;
 system($cmd);
-sleep 4;
+print "[ERROR]\t Something went wrong!\n";
+exit -1;
 }
 
 #will allow while loop to complete 
