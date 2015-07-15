@@ -15,14 +15,13 @@ my $mins = strftime '%M',gmtime();
 my $date = strftime '%d.%m', gmtime(); # 2014-11-09
 my $hour = strftime '%H',gmtime();
 
-$file=~s/\.([a-z]+)/-$hour.$mins-$tvchan\.$1/ig;
+$file=~s/\.([a-z]+)$/-$hour.$mins-$tvchan\.$1/i;
 my $filter = "";
 
 #$filter = '-vf "delogo=x=874:y=24:w=125:h=35:band=10"' if ($tvchan =~/pro7maxx/i);
 
 print "TV:$tvchan\t$val\t$file\n";
 if (-f '/tmp/ip.pls') {
-
 }else{
  system("curl https://gist.githubusercontent.com/dbiesecke/c15243da0e8c17067c73/raw/gistfile1.txt > /tmp/ip.pls");
 };
