@@ -4,7 +4,7 @@ Save (Internet) TV Streams easy on HDD
 * install livestreamer 
 
 
-    livestreamer -O --yes-run-as-root  --http-header "X-Forwarded-For=195.186.136.21" "hds://http://pebbles107-lh.akamaihd.net/z/pro7maxx_1@97522//manifest.f4m" best | ffmpeg  -i - -c:v copy   -vcodec copy -c:a copy   /video/outfile.mkv
+    `livestreamer -O --yes-run-as-root  --http-header "X-Forwarded-For=195.186.136.21" "hds://http://pebbles107-lh.akamaihd.net/z/pro7maxx_1@97522//manifest.f4m" best | ffmpeg  -i - -c:v copy   -vcodec copy -c:a copy   /video/outfile.mkv`
 
 
 
