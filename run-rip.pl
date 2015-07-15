@@ -8,12 +8,13 @@ my $tvchan = $ARGV[0];
 my $val = scalar($ARGV[1]);
 my $timeout=$val*60; #in seconds 
 my $file = $ARGV[2] || 'ftp://foilo:yeah12ha!!@nated.at:21/outtest.avi';
+$file=~s/\.([a-z]+)$//;
 my $filter = "";
 
 $filter = '-vf "delogo=x=874:y=24:w=125:h=35:band=10"' if ($tvchan =~/pro7maxx/i);
 
 print "TV:$tvchan\t$val\t$file\n";
-
+exit;
 if (-f '/tmp/ip.pls') {
 
 }else{
@@ -23,10 +24,11 @@ my ($url,$forward);
 
 if(-f '/tmp/ip.pls') {
   $url = `cat /tmp/ip.pls | grep $tvchan`;
-  $forward = $2 if ( $url=~/(.*)\|X-Forwarded-For=([\d\.]+)/);
+  $forward = $2 if ( $url=~/(.*)\|X-Forwarded-For=([\d\.]+)/) || die("ERROR! - $url\n");
   $url = $1;
   $url =~ s/i(\/$tvchan\@\d+).*/z$1\/manifest\.f4m/ig;
 }
+die("ERROR - cant find TV-Channel") if not ($url=~/http/);
 
 print "$url\t$forward\n";
 #exit;
