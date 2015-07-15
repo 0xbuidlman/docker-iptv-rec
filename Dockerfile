@@ -14,7 +14,7 @@ RUN easy_install livestreamer
 RUN apt-get install curl psmisc -y -f
 
 WORKDIR /video
-ADD https://gist.githubusercontent.com/dbiesecke/7e6211785c8cfc4b0545/raw/run-rip.pl /run.pl
+ADD run-rip.pl /run.pl
 RUN chmod +x /run.pl
 ENTRYPOINT ["perl","/run.pl"]
 
