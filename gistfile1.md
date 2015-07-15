@@ -14,11 +14,11 @@ Manifest for best selection
     `http://pebbles107-lh.akamaihd.net/z/pro7maxx_1@97522/manifest.f4m`
 
 
-    % livestreamer  --http-header "X-Forwarded-For=195.186.136.21" "hds://http://pebbles107-lh.akamaihd.net/z/rtl2_1@97460/manifest.f4m" best                                                                        :(
-    [cli][info] Found matching plugin stream for URL hds://http://pebbles107-lh.akamaihd.net/z/rtl2_1@97460/manifest.f4m
-    [cli][info] Available streams: 1428k (best), 908k (worst)
-    [cli][info] Opening stream: 1428k (hds)
-    [....]
+        % livestreamer  --http-header "X-Forwarded-For=195.186.136.21" "hds://http://pebbles107-lh.akamaihd.net/z/rtl2_1@97460/manifest.f4m" best                                                                        :(
+        [cli][info] Found matching plugin stream for URL hds://http://pebbles107-lh.akamaihd.net/z/rtl2_1@97460/manifest.f4m
+        [cli][info] Available streams: 1428k (best), 908k (worst)
+        [cli][info] Opening stream: 1428k (hds)
+        [....]
 
 
 
