@@ -9,7 +9,7 @@ print scalar(@urls)."\n";
 my $time_to_die=0;
 my $tvchan = $ARGV[0];
 my $val = scalar($ARGV[1]);
-my $timeout=$val*60; #in seconds 
+my $timeout=$ARGV[1]*60; #in seconds 
 my $file = $ARGV[2] || 'ftp://foilo:yeah12ha!!@nated.at:21/outtest.avi';
 my $mins = strftime '%M',gmtime();
 my $date = strftime '%d.%m', gmtime(); # 2014-11-09
@@ -19,7 +19,7 @@ $file=~s/\.([a-z]+)$/-$hour.$mins-$tvchan\.$1/i;
 my $filter = "";
 
 $filter = '-vf "delogo=x=874:y=24:w=125:h=35:band=10"' if ($tvchan =~/pro7maxx/i);
-
+#$filter = '-vf "delogo=x=874:y=24:w=125:h=35:band=10"' if ($tvchan =~/rtl2/i);
 print "TV:$tvchan\t$val\t$file\n";
 if (-f '/tmp/ip.pls') {
 }else{
@@ -38,27 +38,27 @@ my $strm_proto;
 if($url =~/\.m3u8/){ 
         $strm_proto = "hls://"
 }elsif($url =~/manifest\.f4m/) {        $strm_proto = "hds://" };
-
+#
 
 die("ERROR - cant find TV-Channel") if not ($url=~/http/);
 
-print "$url\t$forward\n";
-$SIG{ALRM} = sub { $time_to_die=1; 
-        system("killall livestreamer");
-        system("killall ffmpeg");
-        system("sleep 2 && clear && ls -lah outtest.avi");
-        exit;
-
-
-};
-
-alarm($timeout);
-while(!$time_to_die){
-my $cmd =  'livestreamer --yes-run-as-root  -O --http-header "X-Forwarded-For='.$forward.'" "'.$strm_proto.''.$url.'" best | ffmpeg -i - -vcodec copy -c:v libx264 -c:a copy  '.$filter.' '.$file;
+# print "$url\t$forward\n";
+# $SIG{ALRM} = sub { $time_to_die=1; 
+#         system("killall livestreamer");
+#         system("killall ffmpeg");
+#         system("sleep 2 && clear && ls -lah outtest.avi");
+#         exit;
+# 
+# 
+# };
+# 
+# alarm($timeout);
+# while(!$time_to_die){
+my $cmd =  'livestreamer --yes-run-as-root  -O --http-header "X-Forwarded-For='.$forward.'" "'.$strm_proto.''.$url.'" best | ffmpeg -i - -t '.$timeout.' -vcodec copy -c:v libx264 -c:a copy  '.$filter.' '.$file;
 system($cmd);
 print "[ERROR]\t Something went wrong!\n";
 exit -1;
-}
+# }
 
 #will allow while loop to complete 
 #after $SIG{ALRM} is received 
